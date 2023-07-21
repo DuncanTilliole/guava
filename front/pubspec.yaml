@@ -1,0 +1,54 @@
+name: guava
+description: A new Flutter project.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.1.0+1100
+
+environment:
+  sdk: '>=2.19.2 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  webview_flutter: ^3.0.1
+  svgator_player_flutter: ^1.0.3
+  flutter_svg: ^2.0.4
+  font_awesome_flutter: ^10.4.0
+  http: ^0.13.5
+  ffi: ^2.0.1
+  shared_preferences: ^2.1.0
+  flutter_bloc: ^8.1.2
+  provider: ^6.0.5
+  flutter_dotenv: ^5.0.2
+  firebase_core: ^2.10.0
+  firebase_messaging: ^14.4.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/env/.env
+    - assets/images/background-loader-dark.png
+    - assets/images/background-loader-light.png
+    - assets/images/icon-with-background.png
+    - assets/images/france.png
+    - assets/images/angleterre.png
+    - assets/images/icon.svg
+    - assets/images/icon-like.svg
+    - assets/images/icon-dislike.svg
+    - assets/animations/Guava.dart
+    - assets/animations/loader_guava.dart
+  fonts:
+    - family: Bad Script
+      fonts: 
+        - asset: assets/fonts/bad_script/BadScript-Regular.ttf
+    - family: Raleway
+      fonts:
+        - asset: assets/fonts/raleway/static/Raleway-Regular.ttf
+        - asset: assets/fonts/raleway/static/Raleway-Bold.ttf
+          weight: 700

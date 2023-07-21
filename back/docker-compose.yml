@@ -1,0 +1,61 @@
+version: '3.0'
+
+networks:
+  webservice:
+    name: webservice
+  database:
+    name: database
+    internal: true
+
+services:
+  mongodbguava:
+    container_name: mongodbguava
+    image: mongo:latest
+    restart: always
+    env_file:
+      - .docker.env
+    ports:
+      - 27018:27017
+    volumes:
+      - mongodb_datas:/data/db
+    networks:
+      - database
+    deploy:
+      resources:
+        limits:
+          cpus: '0.7'
+          memory: 700M
+        reservations:
+          cpus: '0.4'
+          memory: 512M
+
+  webserviceguava: 
+    container_name: webserviceguava
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - ${APP_PORT}:${APP_PORT}
+    command: npm run start:prod
+    restart: on-failure:3
+    env_file:
+      - .docker.env
+    depends_on:
+      - mongodbguava
+    networks:
+      - webservice
+      - database
+    deploy:
+      resources:
+        limits:
+          cpus: '0.3'
+          memory: 256M
+        reservations:
+          cpus: '0.2'
+          memory: 128M
+
+volumes:
+  mongodb_datas:
